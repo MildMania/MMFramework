@@ -10,7 +10,9 @@ public class LevelEndPhase : PhaseConditionalNode
     protected override void CheckConditions(Action<Type> callback)
     {
         //callback?.Invoke(typeof(LevelWinPhase));
-
+        // OR
         //callback?.Invoke(typeof(LevelFailPhase));
+        // OR
+        //callback?.Invoke(typeof(PhaseGotoNode));
     }
 }
