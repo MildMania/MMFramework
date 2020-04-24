@@ -11,7 +11,7 @@ public class SceneManager : IDisposable
     #endregion
 
     public int CurSceneID { get; private set; }
-    public SceneController CurLoadedScene { get; private set; }
+    public Scene CurLoadedScene { get; private set; }
     public bool PostLoadCalled { get; private set; }
 
     private int _firstGameSceneID;
@@ -131,9 +131,7 @@ public class SceneManager : IDisposable
     {
         UnityEngine.SceneManagement.SceneManager.SetActiveScene(loadedScene);
 
-        CurLoadedScene = (SceneController)UnityEngine.Object.FindObjectOfType(typeof(SceneController));
-        if (CurLoadedScene == null)
-            return;
+        CurLoadedScene = loadedScene;
 
         OnScenePostLoad();
     }

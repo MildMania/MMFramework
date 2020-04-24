@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public SceneManager SceneManager { get; private set; }
 
+    public PhaseFlowController PhaseFlowController { get; private set; }
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -23,6 +25,13 @@ public class GameManager : MonoBehaviour
         SceneManager = new SceneManager(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 
         SceneManager.LoadNextScene();
+    }
+
+    public void StartFlowController(PhaseFlowController controller)
+    {
+        PhaseFlowController = controller;
+
+        PhaseFlowController.StartPhases();
     }
 
     private void OnDestroy()
