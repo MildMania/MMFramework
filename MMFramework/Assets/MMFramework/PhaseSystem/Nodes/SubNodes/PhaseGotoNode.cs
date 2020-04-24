@@ -1,4 +1,4 @@
-﻿public abstract class PhaseGotoNode : PhaseBaseNode
+﻿public class PhaseGotoNode : PhaseBaseNode
 {
     private PhaseBaseNode _gotoNode;
 
