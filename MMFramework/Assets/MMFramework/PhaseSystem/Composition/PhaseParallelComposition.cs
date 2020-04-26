@@ -1,7 +1,7 @@
 ﻿public class PhaseParallelComposition : PhaseComposition
 {
-    public PhaseParallelComposition(params PhaseBaseNode[] childNodeArr)
-    : base(childNodeArr)
+    public PhaseParallelComposition(int id, params PhaseBaseNode[] childNodeArr)
+    : base(id, childNodeArr)
     {
     }
 

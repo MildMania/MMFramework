@@ -1,18 +1,18 @@
 ﻿using System;
 
-public class LevelEndPhase : PhaseConditionalNode
+public class LevelEndPhaseCondNode : PhaseConditionalNode
 {
-    public LevelEndPhase(params PhaseBaseNode[] nodes)
-        : base(nodes)
+    public LevelEndPhaseCondNode(int id, params PhaseBaseNode[] nodes)
+        : base(id, nodes)
     {
     }
 
-    protected override void CheckConditions(Action<Type> callback)
+    protected override void CheckConditions(Action<int> callback)
     {
-        //callback?.Invoke(typeof(LevelWinPhase));
+        //callback?.Invoke(7);
         // OR
-        //callback?.Invoke(typeof(LevelFailPhase));
+        //callback?.Invoke(8);
         // OR
-        //callback?.Invoke(typeof(PhaseGotoNode));
+        //callback?.Invoke(9);
     }
 }

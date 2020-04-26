@@ -9,6 +9,12 @@ public abstract class PhaseBaseNode
     public Action<PhaseBaseNode> OnTraverseFinished;
     #endregion
 
+    public PhaseBaseNode(int id)
+    {
+        ID = id;
+    }
+
+    public int ID { get; private set; } = -1;
     public bool IsTraversed { get; private set; }
 
     public void Traverse()
