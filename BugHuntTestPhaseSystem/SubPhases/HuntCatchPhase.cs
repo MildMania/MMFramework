@@ -1,16 +1,16 @@
 ﻿using System;
 
-public class HuntCatchPhase : PhaseConditionalNode
+public class HuntCatchPhaseCondNode : PhaseConditionalNode
 {
-    public HuntCatchPhase(params PhaseBaseNode[] nodes)
-        : base(nodes)
+    public HuntCatchPhaseCondNode(int id, params PhaseBaseNode[] nodes)
+        : base(id, nodes)
     {
     }
 
-    protected override void CheckConditions(Action<Type> callback)
+    protected override void CheckConditions(Action<int> callback)
     {
-        //callback?.Invoke(typeof(CatchSuccessPhase));
-
-        //callback?.Invoke(typeof(CatchFailPhase));
+        //callback?.Invoke(4);
+        // OR
+        //callback?.Invoke(5);
     }
 }

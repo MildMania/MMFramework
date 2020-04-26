@@ -2,7 +2,8 @@
 {
     private PhaseBaseNode _gotoNode;
 
-    public PhaseGotoNode(PhaseBaseNode loopNode)
+    public PhaseGotoNode(int id, PhaseBaseNode loopNode)
+        : base(id)
     {
         _gotoNode = loopNode;
     }

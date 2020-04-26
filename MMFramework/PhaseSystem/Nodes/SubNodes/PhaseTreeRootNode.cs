@@ -2,7 +2,8 @@
 {
     protected PhaseBaseNode _rootNode;
 
-    public PhaseTreeRootNode(PhaseBaseNode rootNode)
+    public PhaseTreeRootNode(int id, PhaseBaseNode rootNode)
+        : base(id)
     {
         _rootNode = rootNode;
     }

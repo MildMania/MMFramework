@@ -1,7 +1,7 @@
 ﻿public class PhaseSerialComposition : PhaseComposition
 {
-    public PhaseSerialComposition(params PhaseBaseNode[] childNodeArr)
-        : base(childNodeArr)
+    public PhaseSerialComposition(int id, params PhaseBaseNode[] childNodeArr)
+        : base(id, childNodeArr)
     {
     }
 
