@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     }
 
     public SceneManager SceneManager { get; private set; }
-
     public PhaseFlowController PhaseFlowController { get; private set; }
+
+    public bool StartWithSpecificScene;
+    public int StartingSceneID;
 
     private void Awake()
     {
@@ -24,7 +26,10 @@ public class GameManager : MonoBehaviour
 
         SceneManager = new SceneManager(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 
-        SceneManager.LoadNextScene();
+        if (StartWithSpecificScene)
+            SceneManager.LoadSceneWithIndexOf(StartingSceneID);
+        else
+            SceneManager.LoadNextScene();
     }
 
     public void StartFlowController(PhaseFlowController controller)
