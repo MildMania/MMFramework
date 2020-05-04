@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class LevelEndPhaseCondNode : PhaseConditionalNode
+public class SampleLevelEndPhaseCondNode : PhaseConditionalNode
 {
-    public LevelEndPhaseCondNode(int id, params PhaseBaseNode[] nodes)
+    public SampleLevelEndPhaseCondNode(int id, params PhaseBaseNode[] nodes)
         : base(id, nodes)
     {
     }
