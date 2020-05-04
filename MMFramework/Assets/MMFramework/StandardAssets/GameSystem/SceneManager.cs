@@ -16,6 +16,8 @@ public class SceneManager : IDisposable
 
     private int _firstGameSceneID;
 
+    public int ManagerSceneID { get; private set; }
+
     public SceneManager(int managerSceneID)
     {
         Init(managerSceneID);
@@ -26,8 +28,10 @@ public class SceneManager : IDisposable
 
     private void Init(int managerSceneID)
     {
-        _firstGameSceneID = managerSceneID + 1;
-        CurSceneID = managerSceneID;
+        ManagerSceneID = managerSceneID;
+
+        _firstGameSceneID = ManagerSceneID + 1;
+        CurSceneID = ManagerSceneID;
     }
 
     #region IDisposable Support
@@ -53,6 +57,14 @@ public class SceneManager : IDisposable
     }
     #endregion
 
+    public void LoadSceneWithIndexOf(int index)
+    {
+        if (index.Equals(UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings))
+            index = _firstGameSceneID;
+
+        StartScene(index);
+    }
+
     public void LoadNextScene()
     {
         int targetSceneIndex = CurSceneID + 1;
@@ -72,7 +84,7 @@ public class SceneManager : IDisposable
     {
         PostLoadCalled = false;
 
-        if (CurLoadedScene == null)
+        if (CurLoadedScene == null || CurLoadedScene.buildIndex <= ManagerSceneID)
             ContinueLoadScene(sceneID);
         else
             CheckForCurSceneUnload(() => ContinueLoadScene(sceneID));
