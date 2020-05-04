@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class HuntCatchPhaseCondNode : PhaseConditionalNode
+public class SampleHuntCatchPhaseCondNode : PhaseConditionalNode
 {
-    public HuntCatchPhaseCondNode(int id, params PhaseBaseNode[] nodes)
+    public SampleHuntCatchPhaseCondNode(int id, params PhaseBaseNode[] nodes)
         : base(id, nodes)
     {
     }

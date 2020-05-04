@@ -1,6 +1,6 @@
-﻿public class CatchSuccessPhaseActionNode : PhaseActionNode
+﻿public class SampleCatchSuccessPhaseActionNode : PhaseActionNode
 {
-    public CatchSuccessPhaseActionNode(int id)
+    public SampleCatchSuccessPhaseActionNode(int id)
         : base(id)
     {
     }
