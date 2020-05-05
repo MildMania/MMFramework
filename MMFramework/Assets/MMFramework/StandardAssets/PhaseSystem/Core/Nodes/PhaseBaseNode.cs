@@ -7,6 +7,8 @@ public abstract class PhaseBaseNode
     public static Action<PhaseBaseNode> OnTraverseFinished_Static;
     public Action<PhaseBaseNode> OnTraverseStarted;
     public Action<PhaseBaseNode> OnTraverseFinished;
+
+    public Action<PhaseBaseNode> OnNodeReset;
     #endregion
 
     public PhaseBaseNode(int id)
@@ -19,6 +21,8 @@ public abstract class PhaseBaseNode
 
     public void Traverse()
     {
+        //UnityEngine.Debug.Log("Traversing: " + GetType().ToString());
+
         OnTraverseStarted_Static?.Invoke(this);
         OnTraverseStarted?.Invoke(this);
 
@@ -48,11 +52,16 @@ public abstract class PhaseBaseNode
     {
     }
 
-    public virtual void ResetNode()
+    public void ResetNode()
     {
+        IsTraversed = false;
+
+        ResetNodeCustomActions();
+
+        OnNodeReset?.Invoke(this);
     }
 
-    public virtual void ResetNodeCustomActions()
+    protected virtual void ResetNodeCustomActions()
     {
     }
 }
