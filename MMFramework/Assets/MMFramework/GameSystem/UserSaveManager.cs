@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class UserSaveManager : MonoBehaviour
+public abstract class UserSaveManager : MonoBehaviour
 {
     [SerializeField] private bool _loadSave;
     [SerializeField] private int _startingLevelID;
@@ -29,16 +29,14 @@ public class UserSaveManager : MonoBehaviour
         PhaseBaseNode.OnTraverseStarted_Static -= OnPhaseTraverseStarted;
     }
 
-    private void OnPhaseTraverseStarted(PhaseBaseNode phase)
-    {
-        if (phase is LevelWinPostPhase)
-            SaveCurLevel();
-    }
+    /// <summary>
+    /// Check for the phase you would like to trigger save, Then call SaveCurLevel(int) method.
+    /// </summary>
+    /// <param name="phase"></param>
+    protected abstract void OnPhaseTraverseStarted(PhaseBaseNode phase);
 
-    private void SaveCurLevel()
+    protected void SaveCurLevel(int curLevelID)
     {
-        int curLevelID = ((LevelPhase)GameManager.Instance.PhaseFlowController.TreeRootNode).LevelID;
-
         PlayerPrefs.SetInt(USER_LEVELID_KEY, curLevelID);
         PlayerPrefs.Save();
     }
