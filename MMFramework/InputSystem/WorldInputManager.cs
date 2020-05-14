@@ -380,9 +380,6 @@ public class WorldInputManager : MonoBehaviour
 
     void ProcessMouseInput(WorldInputTouch touch, int index)
     {
-        if (CheckIfUIObjectIsInIgnore())
-            return;
-
         Vector3 inputPos = Input.mousePosition;
 
         touch.TouchPoint = inputPos;
@@ -413,9 +410,6 @@ public class WorldInputManager : MonoBehaviour
 
         Touch unityTouch = Input.GetTouch(index);
 
-        if (CheckIfUIObjectIsInIgnore())
-            return;
-
         Vector3 inputPos = (Vector3)unityTouch.position;
 
         touch.TouchPoint = inputPos;
@@ -433,28 +427,6 @@ public class WorldInputManager : MonoBehaviour
             else if (unityTouch.phase == TouchPhase.Ended)
                 InputEnded(touch, index);
         }
-    }
-
-    private bool CheckIfUIObjectIsInIgnore()
-    {
-        if (MMStandaloneInputModule.CurrentInput == null)
-            return false;
-
-        GameObject objectUnderPointer = MMStandaloneInputModule.CurrentInput.GameObjectUnderPointer();
-
-        return ProcessUIObjForInput(objectUnderPointer);
-    }
-
-    private bool ProcessUIObjForInput(GameObject pressedObj)
-    {
-        if (pressedObj == null)
-            return false;
-
-        IInputBlocker targetMenu = pressedObj.GetComponentInParent<IInputBlocker>();
-        if (targetMenu == null)
-            return false;
-
-        return true;
     }
 
     void InputStarted(WorldInputTouch touch, int index)

@@ -1,6 +1,12 @@
 {
     "name": "com.mildmania.mmframework",
-    "references": ["Unity.TextMeshPro", "Unity.TextMeshPro.Editor", "Unity.Timeline"],
+    "references": [
+        "Unity.TextMeshPro",
+        "Unity.TextMeshPro.Editor",
+        "Unity.Timeline",
+        "com.uitweening.uitweening",
+        "com.UIFramework.UMVC"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

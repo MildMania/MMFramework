@@ -32,9 +32,7 @@ public class InputControllerManager
         _activeControllers = new List<InputControllerBase>()
         {
             WorldInputController.Instance,
-            UIInputController.Instance,
             WorldHighlighterInputController.Instance,
-            UIHighlighterInputController.Instance,
         };
     }
 

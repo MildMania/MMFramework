@@ -41,16 +41,4 @@ static partial class Utilities
         else
             return false;
     }
-
-    // find corresponding rotation of indicator
-    public static float GetRotation(this Camera cam, Vector3 sourcePos, Vector3 targetPos)
-    {
-        Vector2 sourceScreenPos = MMUISystemUtilities.WorldToCanvasOverlayPoint(cam, sourcePos);
-        Vector2 targetScreenPos = MMUISystemUtilities.WorldToCanvasOverlayPoint(cam, targetPos);
-
-        float angle = Mathf.Atan2(sourceScreenPos.y - targetScreenPos.y, sourceScreenPos.x - targetScreenPos.x) * Mathf.Rad2Deg;
-        angle -= 90;
-
-        return angle;
-    }
 }
