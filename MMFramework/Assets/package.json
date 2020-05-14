@@ -7,6 +7,8 @@
     "dependencies" : {
         "com.unity.textmeshpro": "2.0.1",
         "com.unity.timeline": "1.2.14",
-        "com.unity.cinemachine": "2.5.0"
+        "com.unity.cinemachine": "2.5.0",
+        "com.uitweening.uitweening": "1.0.0",
+        "com.uiframework.umvc": "1.0.0",
 	}
 }
