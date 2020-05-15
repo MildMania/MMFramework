@@ -5,10 +5,10 @@
     "unity": "2019.1",
     "description": "Infrastructures of multiple systems for faster development.",
     "dependencies" : {
-        "com.uitweening.uitweening": "1.x.x",
-        "com.uiframework.umvc": "1.x.x"
         "com.unity.textmeshpro": "2.0.1",
         "com.unity.timeline": "1.2.14",
         "com.unity.cinemachine": "2.5.0",
+        "com.uitweening.uitweening": "1.x.x",
+        "com.uiframework.umvc": "1.x.x"
 	}
 }
