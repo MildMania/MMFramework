@@ -1,14 +1,14 @@
 {
     "name": "com.mildmania.mmframework",
     "displayName": "MildMania Framework",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "unity": "2019.1",
     "description": "Infrastructures of multiple systems for faster development.",
     "dependencies" : {
-        "com.unity.textmeshpro": "2.x.x",
-        "com.unity.timeline": "1.x.x",
-        "com.unity.cinemachine": "2.x.x",
         "com.uitweening.uitweening": "1.x.x",
         "com.uiframework.umvc": "1.x.x"
+        "com.unity.textmeshpro": "2.0.1",
+        "com.unity.timeline": "1.2.14",
+        "com.unity.cinemachine": "2.5.0",
 	}
 }
