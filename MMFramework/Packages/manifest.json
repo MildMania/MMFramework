@@ -1,12 +1,10 @@
 {
   "dependencies": {
-    "com.uiframework.umvc": "https://github.com/mrvcmrvc/UMVC.git#upm",
-    "com.uitweening.uitweening": "https://github.com/mrvcmrvc/UITweening.git#upm",
     "com.unity.cinemachine": "2.5.0",
     "com.unity.ide.vscode": "1.2.0",
     "com.unity.render-pipelines.universal": "7.3.1",
     "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.2.14",
+    "com.unity.timeline": "1.3.2",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualeffectgraph": "7.3.1",
     "com.unity.modules.ai": "1.0.0",
@@ -40,15 +38,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "com.uitweening.uitweening": {
-      "revision": "upm",
-      "hash": "f6ffa4a657cdee6140c31bdb0f8682702ee3e0c9"
-    },
-    "com.uiframework.umvc": {
-      "revision": "upm",
-      "hash": "dd5dae326c28c5e07a9da9abce9f85993cd2f298"
-    }
   }
 }
