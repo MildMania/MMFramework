@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-static partial class Utilities
+namespace MMFramework.Utilities
 {
-    public static bool IsTouchPlatform()
+    public static partial class Utilities
     {
-        return Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android;
+        public static bool IsTouchPlatform()
+        {
+            return Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android;
+        }
     }
 }

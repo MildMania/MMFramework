@@ -1,104 +1,106 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-static partial class Utilities
+namespace MMFramework.Utilities
 {
-    static YieldInstruction _waitForFixedUpdate;
-
-    public static YieldInstruction WaitForFixedUpdate
+    static partial class Utilities
     {
-        get
+        static YieldInstruction _waitForFixedUpdate;
+
+        public static YieldInstruction WaitForFixedUpdate
         {
-            if(_waitForFixedUpdate == null)
-                _waitForFixedUpdate = new UnityEngine.WaitForFixedUpdate();
-
-            return _waitForFixedUpdate;
-        }
-    }
-
-    static YieldInstruction _waitForEndOfFrame;
-
-    public static YieldInstruction WaitForEndOfFrame
-    {
-        get
-        {
-            if(_waitForEndOfFrame == null)
-                _waitForEndOfFrame = new UnityEngine.WaitForEndOfFrame();
-
-            return _waitForEndOfFrame;
-        }
-    }
-
-
-    public static List<T> FindObjectsOfTypeAll<T>()
-    {
-        List<T> results = new List<T>();
-
-        results.AddRange(FindDontDestroyObjectsOfTypeAll<T>());
-
-        for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
-        {
-            var s = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
-            if (s.isLoaded)
+            get
             {
-                //Debug.Log("<color=magenta>Scene is loaded: " + s.name + "</color>");
+                if (_waitForFixedUpdate == null)
+                    _waitForFixedUpdate = new UnityEngine.WaitForFixedUpdate();
 
-                var allGameObjects = s.GetRootGameObjects();
-                for (int j = 0; j < allGameObjects.Length; j++)
-                {
-                    var go = allGameObjects[j];
-                    results.AddRange(go.GetComponentsInChildren<T>(true));
-                }
+                return _waitForFixedUpdate;
             }
         }
-        return results;
-    }
 
-    static List<T> FindDontDestroyObjectsOfTypeAll<T>()
-    {
-        List<T> results = new List<T>();
+        static YieldInstruction _waitForEndOfFrame;
 
-        GameObject dontDestroyRoot = GameObject.Find("DontDestroy");
+        public static YieldInstruction WaitForEndOfFrame
+        {
+            get
+            {
+                if (_waitForEndOfFrame == null)
+                    _waitForEndOfFrame = new UnityEngine.WaitForEndOfFrame();
 
-        if (dontDestroyRoot == null)
+                return _waitForEndOfFrame;
+            }
+        }
+
+
+        public static List<T> FindObjectsOfTypeAll<T>()
+        {
+            List<T> results = new List<T>();
+
+            results.AddRange(FindDontDestroyObjectsOfTypeAll<T>());
+
+            for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+            {
+                var s = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+                if (s.isLoaded)
+                {
+                    //Debug.Log("<color=magenta>Scene is loaded: " + s.name + "</color>");
+
+                    var allGameObjects = s.GetRootGameObjects();
+                    for (int j = 0; j < allGameObjects.Length; j++)
+                    {
+                        var go = allGameObjects[j];
+                        results.AddRange(go.GetComponentsInChildren<T>(true));
+                    }
+                }
+            }
             return results;
+        }
 
-        results.AddRange(dontDestroyRoot.GetComponentsInChildren<T>(true));
+        static List<T> FindDontDestroyObjectsOfTypeAll<T>()
+        {
+            List<T> results = new List<T>();
 
-        return results;
-    }
+            GameObject dontDestroyRoot = GameObject.Find("DontDestroy");
 
-    public static Coroutine WaitForSeconds(this MonoBehaviour mb, float duration, System.Action callback)
-    {
-        if (callback == null)
-            return null;
+            if (dontDestroyRoot == null)
+                return results;
 
-        return mb.StartCoroutine(WaitForSeconds(duration, callback));
-    }
+            results.AddRange(dontDestroyRoot.GetComponentsInChildren<T>(true));
 
-    static IEnumerator WaitForSeconds(float duration, System.Action callback)
-    {
-        yield return new WaitForSeconds(duration);
+            return results;
+        }
 
-        if (callback != null)
-            callback();
-    }
+        public static Coroutine WaitForSeconds(this MonoBehaviour mb, float duration, System.Action callback)
+        {
+            if (callback == null)
+                return null;
 
-    public static void OnWaitedForFixedUpdate(this MonoBehaviour mb, System.Action callback)
-    {
-        if (callback == null)
-            return;
+            return mb.StartCoroutine(WaitForSeconds(duration, callback));
+        }
 
-        mb.StartCoroutine(WaitForFixedUpdateProgress(callback));
-    }
+        static IEnumerator WaitForSeconds(float duration, System.Action callback)
+        {
+            yield return new WaitForSeconds(duration);
 
-    static IEnumerator WaitForFixedUpdateProgress(System.Action callback)
-    {
-        yield return WaitForFixedUpdate;
+            if (callback != null)
+                callback();
+        }
 
-        if (callback != null)
-            callback();
+        public static void OnWaitedForFixedUpdate(this MonoBehaviour mb, System.Action callback)
+        {
+            if (callback == null)
+                return;
+
+            mb.StartCoroutine(WaitForFixedUpdateProgress(callback));
+        }
+
+        static IEnumerator WaitForFixedUpdateProgress(System.Action callback)
+        {
+            yield return WaitForFixedUpdate;
+
+            if (callback != null)
+                callback();
+        }
     }
 }
