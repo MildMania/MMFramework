@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UMVC;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,9 +29,11 @@ namespace UMVC
         public List<UIMenu> UIMenuList { get; private set; }
         public List<UIMenu> ActiveUIMenuColl { get; private set; }
 
+        public bool IsMainMenuFirstOpenOccured = false;
+
         private List<UIMenu> _closeMenuColl = new List<UIMenu>();
         private bool _isDeactivationFinished;
-        private UIMenu _nextOpeningMenu;
+        private List<UIMenu> _nextOpeningMenuColl = new List<UIMenu>();
 
         private void Awake()
         {
@@ -96,7 +97,7 @@ namespace UMVC
                 menuRequestedToActivate.transform.SetAsLastSibling();
             }
 
-            _nextOpeningMenu = menuRequestedToActivate;
+            _nextOpeningMenuColl.Add(menuRequestedToActivate);
 
             if (!_isDeactivationFinished)
                 return;
@@ -115,7 +116,7 @@ namespace UMVC
             {
                 callback?.Invoke();
 
-                if (_nextOpeningMenu == null)
+                if (_nextOpeningMenuColl.Count == 0)
                 {
                     foreach (var menu in ActiveUIMenuColl)
                     {
@@ -128,14 +129,17 @@ namespace UMVC
                 }
                 else
                 {
-                    if (!_nextOpeningMenu.IsPreActivationFinished)
+                    foreach (UIMenu menu in _nextOpeningMenuColl)
                     {
-                        ActiveUIMenuColl.Add(_nextOpeningMenu);
+                        if (!menu.IsPreActivationFinished)
+                        {
+                            ActiveUIMenuColl.Add(menu);
 
-                        _nextOpeningMenu.Activate();
+                            menu.Activate();
+                        }
                     }
 
-                    _nextOpeningMenu = null;
+                    _nextOpeningMenuColl.Clear();
                 }
 
                 _isDeactivationFinished = true;
