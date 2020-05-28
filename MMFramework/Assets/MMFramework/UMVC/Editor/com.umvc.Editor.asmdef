@@ -1,7 +1,11 @@
 {
-    "name": "com.mildmania.mmframework",
-    "references": [],
-    "includePlatforms": [],
+    "name": "com.umvc.Editor",
+    "references": [
+        "GUID:d841e74258f017e4b98389b52dcc06a2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
