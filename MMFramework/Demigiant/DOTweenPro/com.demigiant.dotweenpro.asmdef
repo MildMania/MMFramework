@@ -1,0 +1,15 @@
+{
+    "name": "com.demigiant.dotweenpro",
+    "references": [
+        "GUID:a380a3db0fec02246bbcfe5992c78add"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
