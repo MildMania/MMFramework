@@ -264,7 +264,8 @@ namespace UMVC
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            if (IsListening && !IsDeactivated && LastEventData.pointerPress != null)
+            if (IsListening && !IsDeactivated
+                && LastEventData != null && LastEventData.pointerPress != null)
             {
                 _isExitedWhilePressed = true;
 
