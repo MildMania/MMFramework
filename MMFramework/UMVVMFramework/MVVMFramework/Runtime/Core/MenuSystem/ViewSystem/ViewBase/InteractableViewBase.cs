@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -18,16 +19,13 @@ namespace MVVM
         {
             Init();
 
-            RegisterEvents();
-
             AwakeCustomActions();
         }
 
         private void OnDestroy()
         {
+            _cachedViewModel.OnVMStateChanged -= OnVMStateChanged;
             _cachedViewModel.OnPropertyChanged -= OnPropertyChanged;
-
-            UnregisterEvents();
 
             OnDestroyCustomActions();
         }
@@ -39,6 +37,8 @@ namespace MVVM
 
             _cachedViewModel.OnPropertyChanged += OnPropertyChanged;
 
+            _cachedViewModel.OnVMStateChanged += OnVMStateChanged;
+
             _cachedVMProperty = BindingExtensions.GetPropertyInfoOf<TPLD>(_cachedViewModel);
 
             _cachedMethodInfoColl = new Dictionary<string, MethodInfo>();
@@ -46,6 +46,19 @@ namespace MVVM
                 _cachedMethodInfoColl.Add(methodName, BindingExtensions.GetMethodInfoOf(_cachedViewModel, methodName));
 
             _propertyChangeValidator = new PropertyChangeValidator();
+        }
+
+        private void OnVMStateChanged(EVMState state)
+        {
+            switch (state)
+            {
+                case EVMState.Active:
+                    RegisterEvents();
+                    break;
+                case EVMState.Deactive:
+                    UnregisterEvents();
+                    break;
+            }
         }
 
         private void RegisterEvents()
