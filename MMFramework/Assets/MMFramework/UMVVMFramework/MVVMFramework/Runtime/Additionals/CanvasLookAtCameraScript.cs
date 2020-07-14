@@ -9,6 +9,9 @@ namespace MVVM
 
         private void Update()
         {
+            if (Camera.main == null)
+                return;
+
             transform.LookAt(Camera.main.transform);
 
             if (LookToDir)
