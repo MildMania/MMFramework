@@ -387,7 +387,8 @@ public class WorldInputManager : MonoBehaviour
 
         if (!touch.IsTouchDown)
         {
-            if (Input.GetMouseButtonDown(index))
+            if (!CheckIfIsOnUI()
+                && Input.GetMouseButtonDown(index))
                 InputStarted(touch, index);
         }
         else
@@ -417,7 +418,8 @@ public class WorldInputManager : MonoBehaviour
 
         if (!touch.IsTouchDown)
         {
-            if (unityTouch.phase == TouchPhase.Began)
+            if (!CheckIfIsOnUI(unityTouch.fingerId)
+                && unityTouch.phase == TouchPhase.Began)
                 InputStarted(touch, index);
         }
         else
@@ -428,6 +430,11 @@ public class WorldInputManager : MonoBehaviour
             else if (unityTouch.phase == TouchPhase.Ended)
                 InputEnded(touch, index);
         }
+    }
+
+    private bool CheckIfIsOnUI(int fingerID = -1)
+    {
+        return EventSystem.current.IsPointerOverGameObject(fingerID);
     }
 
     void InputStarted(WorldInputTouch touch, int index)
