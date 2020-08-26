@@ -62,6 +62,12 @@ public abstract class State<T1, T2, T3> : MonoBehaviour, IState<T1, T2>
 
     public virtual bool CanEnter(TransitionMessage m)
     {
+        if (m != null
+            && !(m is T3))
+                    throw new Exception("Invalid Message!");
+
+                _m = (T3)m;
+
         return true;
     }
 

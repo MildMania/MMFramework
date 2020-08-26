@@ -7,6 +7,8 @@ public abstract class MMFSM<T1, T2> : MonoBehaviour, IMMFSM<T1, T2>
     where T1 : IConvertible
     where T2 : IConvertible
 {
+    [SerializeField] private bool _isDebugEnabled;
+
     public IFSMController<T1, T2> FSMController { get; private set; }
 
     protected List<IState<T1, T2>> _stateList;
@@ -151,6 +153,9 @@ public abstract class MMFSM<T1, T2> : MonoBehaviour, IMMFSM<T1, T2>
 
         CurState = state;
 
+        if (_isDebugEnabled)
+            Debug.Log(gameObject.name + ": Entered State: " + CurState.StateID + " : " + Time.renderedFrameCount);
+
         FireOnStateEntered(CurState.StateID);
 
         CurState.OnEnter(m);
@@ -171,6 +176,9 @@ public abstract class MMFSM<T1, T2> : MonoBehaviour, IMMFSM<T1, T2>
         CurState.OnExitCompleted -= OnCurStateExitCompleted;
 
         PrevState = CurState;
+
+        if (_isDebugEnabled)
+            Debug.Log(gameObject.name + ": Exited State: " + CurState.StateID + " : " + Time.renderedFrameCount);
 
         FireOnStateExited(PrevState.StateID);
 
@@ -268,6 +276,14 @@ public abstract class MMFSM<T1, T2> : MonoBehaviour, IMMFSM<T1, T2>
     public T1 GetCurStateID()
     {
         return CurState.StateID;
+    }
+
+    public T1 GetNextStateID()
+    {
+        if (_nextState == null)
+            return default;
+
+        return _nextState.StateID;
     }
 
     public IState<T1, T2> GetState(T1 stateID)

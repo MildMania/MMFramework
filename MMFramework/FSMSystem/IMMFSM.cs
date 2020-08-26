@@ -30,6 +30,7 @@ public interface IMMFSM<T1, T2> : IMMFSM, IDisposable
     bool PushState(T1 t, TransitionMessage m);
     bool PopState();
     T1 GetCurStateID();
+    T1 GetNextStateID();
     IState<T1, T2> GetState(T1 stateID);
     TState GetState<TState>() where TState : IState<T1, T2>;
 }
