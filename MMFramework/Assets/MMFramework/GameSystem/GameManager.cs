@@ -14,14 +14,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public SceneManager SceneManager { get; private set; }
+    public MMSceneManager SceneManager { get; private set; }
     public PhaseFlowController PhaseFlowController { get; private set; }
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
-        SceneManager = new SceneManager(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        SceneManager = new MMSceneManager(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartFlowController(PhaseFlowController controller)

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : IDisposable
+public class MMSceneManager : IDisposable
 {
     #region Events
     public Action OnSceneUnloading { get; set; }
@@ -18,7 +18,7 @@ public class SceneManager : IDisposable
 
     public int ManagerSceneID { get; private set; }
 
-    public SceneManager(int managerSceneID)
+    public MMSceneManager(int managerSceneID)
     {
         Init(managerSceneID);
 
