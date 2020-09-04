@@ -101,6 +101,9 @@ namespace MVVM
         {
             List<UIAnimController> _animControllerColl = new List<UIAnimController>();
 
+            if (trigger.OnOutroTriggered == null)
+                return _animControllerColl;
+
             Delegate[] delegates = trigger.OnOutroTriggered.GetInvocationList();
 
             foreach (Delegate del in delegates)
